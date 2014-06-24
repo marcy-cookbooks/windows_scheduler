@@ -11,16 +11,23 @@ Requirements
 Usage
 -----
 
-1. Just include `windows_scheduler` in your node's `Berksfile`:
-
+##### 1. Just include `windows_scheduler` in your node's `Berksfile`:
 ```ruby
 cookbook 'windows_scheduler', git: 'https://github.com/marcy-cookbooks/windows_scheduler.git'
 ```
 
-2. Just include `windows_scheduler` in your cookbook's `metadata.rb`:
-
+##### 2. Just include `windows_scheduler` in your cookbook's `metadata.rb`:
 ```ruby
 depends 'windows_scheduler'
+```
+
+##### 3. Create recipe that use `windows_scheduler_job` resource like this:
+```ruby
+  windows_scheduler_job "example job" do
+    path "C:¥path¥to¥job.ps1"
+    timespam_minutes 5
+    action :create
+  end
 ```
 
 Contributing
