@@ -6,7 +6,7 @@ action :create do
   else
     raise Chef::Exceptions::ValidationFailed, "Use only one of either script or script_path."
   end
-  powershell_script "name_of_script" do
+  powershell_script "Create job [#{new_resource.name}]" do
     cwd Chef::Config[:file_cache_path]
     code <<-EOH
       $trigger = New-JobTrigger -Once -RepetitionInterval (New-TimeSpan -Minutes #{new_resource.span_minutes}) -RepetitionDuration (New-TimeSpan -Days #{new_resource.duration_days}) -At (Get-Date)
@@ -27,7 +27,7 @@ action :create do
   end
 end
 action :delete do
-  powershell_script "name_of_script" do
+  powershell_script "Delete job [#{new_resource.name}]" do
     cwd Chef::Config[:file_cache_path]
     code <<-EOH
       $jobs = Get-ScheduledJob
