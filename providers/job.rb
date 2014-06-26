@@ -14,7 +14,7 @@ action :create do
       $exist = 0
       if ($jobs.Count -gt 0) {
         for ($i=0; $i -lt $jobs.Count; $i++) {
-          if ($jobs[$i].Name -eq #{new_resource.name}) {
+          if ($jobs[$i].Name -eq "#{new_resource.name}") {
             Get-ScheduledJob -Name #{new_resource.name} | Set-ScheduledJob #{job} -Trigger $trigger
             $exist = 1
           }
@@ -33,7 +33,7 @@ action :delete do
       $jobs = Get-ScheduledJob
       if ($jobs.Count -gt 0) {
         for ($i=0; $i -lt $jobs.Count; $i++) {
-          if ($jobs[$i].Name -eq #{new_resource.name}) {
+          if ($jobs[$i].Name -eq "#{new_resource.name}") {
             Unregister-ScheduledJob -Name #{new_resource.name}
           }
         }
