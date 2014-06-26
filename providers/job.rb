@@ -19,7 +19,7 @@ action :create do
     variables({
      :span_minutes => new_resource.span_minutes,
      :duration_days => new_resource.duration_days,
-     :multiple_policy => node[:powershell_cloudwatch][:region],
+     :multiple_policy => new_resource.multiple_policy,
      :name => new_resource.name,
      :job => job
     })
