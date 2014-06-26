@@ -15,13 +15,13 @@ action :create do
       if ($jobs.Count -gt 0) {
         for ($i=0; $i -lt $jobs.Count; $i++) {
           if ($jobs[$i].Name -eq "#{new_resource.name}") {
-            Get-ScheduledJob -Name #{new_resource.name} | Set-ScheduledJob #{job} -Trigger $trigger
+            Get-ScheduledJob -Name #{new_resource.name} | Set-ScheduledJob #{job} -Trigger $trigger -MultipleInstancePolicy #{new_resource.multiple_policy}
             $exist = 1
           }
         }
       }
       if ($exist -eq 0) {
-        Register-ScheduledJob -Name #{new_resource.name} #{job} -Trigger $trigger
+        Register-ScheduledJob -Name #{new_resource.name} #{job} -Trigger $trigger -MultipleInstancePolicy #{new_resource.multiple_policy}
       }
     EOH
   end

@@ -5,3 +5,4 @@ attribute :script, :kind_of => String, :default => nil
 attribute :script_path, :kind_of => String, :default => nil
 attribute :span_minutes, :kind_of => Integer, :required => true
 attribute :duration_days, :kind_of => Integer, :default => 8192
+attribute :multiple_policy, :kind_of => String, :default => "Parallel"
