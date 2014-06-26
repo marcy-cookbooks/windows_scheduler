@@ -1,0 +1,15 @@
+$trigger = New-JobTrigger -Once -RepetitionInterval (New-TimeSpan -Minutes <%= @span_minutes %>) -RepetitionDuration (New-TimeSpan -Days <%= @duration_days %>) -At (Get-Date)
+$option = New-ScheduledJobOption -MultipleInstancePolicy <%= @multiple_policy %>
+$jobs = Get-ScheduledJob
+$exist = 0
+if ($jobs.Count -gt 0) {
+  for ($i=0; $i -lt $jobs.Count; $i++) {
+    if ($jobs[$i].Name -eq "<%= @name %>") {
+      Get-ScheduledJob -Name <%= @name %> | Set-ScheduledJob <%= @job %> -Trigger $trigger -ScheduledJobOption $option
+      $exist = 1
+    }
+  }
+}
+if ($exist -eq 0) {
+  Register-ScheduledJob -Name <%= @name %> <%= @job %> -Trigger $trigger -ScheduledJobOption $option
+}
