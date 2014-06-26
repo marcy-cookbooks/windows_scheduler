@@ -10,7 +10,7 @@ action :create do
     cwd Chef::Config[:file_cache_path]
     code <<-EOH
       $trigger = New-JobTrigger -Once -RepetitionInterval (New-TimeSpan -Minutes #{new_resource.span_minutes}) -RepetitionDuration (New-TimeSpan -Days #{new_resource.duration_days}) -At (Get-Date)
-      $option = New-ScheduledOption -MultipleInstancePolicy #{new_resource.multiple_policy}
+      $option = New-ScheduledJobOption -MultipleInstancePolicy #{new_resource.multiple_policy}
       $jobs = Get-ScheduledJob
       $exist = 0
       if ($jobs.Count -gt 0) {
