@@ -9,6 +9,7 @@ action :create do
   powershell_script "Create job [#{new_resource.name}]" do
     cwd Chef::Config[:file_cache_path]
     code <<-EOH
+      Set-ExecutionPolicy RemoteSigned
       powershell.exe  -NoLogo -NonInteractive -NoProfile -ExecutionPolicy RemoteSigned -InputFormat None -File "C:\\chef\\windows_scheduler_job_#{new_resource.name}.ps1"
     EOH
     action :nothing
