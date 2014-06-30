@@ -1,6 +1,7 @@
 windows_scheduler Cookbook
 ==========================
 Set Windows Task Scheduler use PowerShell.
+For now, Only support ScheduledJob of every few minutes.
 
 Requirements
 ------------
