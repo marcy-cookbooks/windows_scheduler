@@ -24,8 +24,8 @@ depends 'windows_scheduler'
 ##### 3. Create recipe that use `windows_scheduler_job` resource like this:
 ```ruby
   windows_scheduler_job "example job" do
-    path "C:¥path¥to¥job.ps1"
-    timespam_minutes 5
+    path "C:\\path\\to\\job.ps1"
+    span_minutes 5
     action :create
   end
 ```
